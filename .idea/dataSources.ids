@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - pet@localhost" uuid="5bd967e0-0e9f-471d-9d35-49dcfbc530e7">
+    <database-info product="MySQL" version="5.7.10-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="pet"/>
+    <table name="activity" schema="" catalog="pet" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="deviceId" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="latG" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="latM" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="latMm" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="longG" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="longM" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="longMm" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="activity_ibfk_1" columns="deviceId" ref-table="device" ref-schema="" ref-catalog="pet" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="ukActivName" unique="true" columns="name"/>
+      <index name="ukDeviceId" unique="true" columns="deviceId"/>
+      <index name="timeInx" unique="false" columns="time"/>
+    </table>
+    <table name="device" schema="" catalog="pet" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="imei" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sendingInterval" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="isActive" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <column name="battery" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="statusId" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="protoId" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="petId" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="device_ibfk_1" columns="statusId" ref-table="status" ref-schema="" ref-catalog="pet" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="device_ibfk_2" columns="protoId" ref-table="protocol" ref-schema="" ref-catalog="pet" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="device_ibfk_3" columns="petId" ref-table="pet" ref-schema="" ref-catalog="pet" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="activity_ibfk_1" table="activity" schema="" catalog="pet" columns="deviceId"/>
+      <exported-key name="geofence_ibfk_1" table="geofence" schema="" catalog="pet" columns="deviceId"/>
+      <index name="ukIMEIName" unique="true" columns="imei"/>
+      <index name="fkPetId" unique="false" columns="petId"/>
+      <index name="fkProtoId" unique="false" columns="protoId"/>
+      <index name="fkStatusId" unique="false" columns="statusId"/>
+    </table>
+    <table name="employee" schema="" catalog="pet" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="joining_date" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="salary" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="ssn" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="ssn" unique="true" columns="ssn"/>
+    </table>
+    <table name="geofence" schema="" catalog="pet" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="deviceId" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="latG" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="latM" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="latMm" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="longG" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="longM" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="longMm" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="geofence_ibfk_1" columns="deviceId" ref-table="device" ref-schema="" ref-catalog="pet" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="ukFenceName" unique="true" columns="name"/>
+      <index name="fkDeviceId" unique="false" columns="deviceId"/>
+    </table>
+    <table name="pet" schema="" catalog="pet" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="petStateId" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="pet_ibfk_1" columns="petStateId" ref-table="petstate" ref-schema="" ref-catalog="pet" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="device_ibfk_3" table="device" schema="" catalog="pet" columns="petId"/>
+      <exported-key name="fk_petgroup_pet_pet" table="petgroup_pet" schema="" catalog="pet" columns="petId"/>
+      <index name="ukPetName" unique="true" columns="name"/>
+      <index name="ukPetStateId" unique="true" columns="petStateId"/>
+    </table>
+    <table name="petgroup" schema="" catalog="pet" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="userId" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="fk_petgroup_user" columns="userId" ref-table="user" ref-schema="" ref-catalog="pet" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_petgroup_pet" table="petgroup_pet" schema="" catalog="pet" columns="petGroupId"/>
+      <index name="ukGroupName" unique="true" columns="name"/>
+      <index name="unique_userId" unique="true" columns="userId"/>
+    </table>
+    <table name="petgroup_pet" schema="" catalog="pet" type="TABLE">
+      <column name="petId" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="petGroupId" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="petId,petGroupId"/>
+      <foreign-key name="fk_petgroup_pet" columns="petGroupId" ref-table="petgroup" ref-schema="" ref-catalog="pet" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_petgroup_pet_pet" columns="petId" ref-table="pet" ref-schema="" ref-catalog="pet" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_petgroup_pet_idx" unique="false" columns="petGroupId"/>
+    </table>
+    <table name="petstate" schema="" catalog="pet" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="weight" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="age" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="pulse" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="water" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="eyes" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="teeth" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="drugs" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="appetite" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="pet_ibfk_1" table="pet" schema="" catalog="pet" columns="petStateId"/>
+    </table>
+    <table name="protocol" schema="" catalog="pet" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="device_ibfk_2" table="device" schema="" catalog="pet" columns="protoId"/>
+      <index name="ukProtName" unique="true" columns="name"/>
+    </table>
+    <table name="role" schema="" catalog="pet" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="user_ibfk_1" table="user" schema="" catalog="pet" columns="roleId"/>
+      <index name="ukName" unique="true" columns="name"/>
+    </table>
+    <table name="status" schema="" catalog="pet" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="device_ibfk_1" table="device" schema="" catalog="pet" columns="statusId"/>
+      <index name="ukStatName" unique="true" columns="name"/>
+    </table>
+    <table name="user" schema="" catalog="pet" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="roleId" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="user_ibfk_1" columns="roleId" ref-table="role" ref-schema="" ref-catalog="pet" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_petgroup_user" table="petgroup" schema="" catalog="pet" columns="userId"/>
+      <index name="ukEmail" unique="true" columns="email"/>
+      <index name="fkRoleId" unique="false" columns="roleId"/>
+    </table>
+  </data-source>
+</component>

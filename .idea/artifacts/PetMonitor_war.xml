@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="PetMonitor:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="SpringHibernateExample.war">
+      <element id="artifact" artifact-name="PetMonitor:war exploded" />
+    </root>
+  </artifact>
+</component>
